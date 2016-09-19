@@ -12,13 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
-//IS MY public/index.html folder in the wrong place? did i need to recreate it or use and update the default one?
-    //need to change the addUser function file
-    //delete function - Change "stringify" to delete
 
     public static void createTables(Connection conn) throws SQLException {
-//      Connect to the database and create a table with four columns: id, username, address, and email.
-
+        //Connect to the database and create a table with four columns: id, username, address, and email.
         Statement stmt = conn.createStatement();
         stmt.execute("CREATE TABLE IF NOT EXISTS users (id IDENTITY, username VARCHAR, address VARCHAR, email VARCHAR)");
 
@@ -32,10 +28,7 @@ public class Main {
         Spark.externalStaticFileLocation("public");
         Spark.init();
 
-//        Create a GET route called /user that calls selectUsers and returns the data as JSON.
-//        Create a POST route called /user that parses request.body() into a User object and calls insertUser to put it in the database.
-//Create a PUT route called /user that parses request.body() into a User object and calls updateUser to update it in the database.
-//Create a DELETE route called /user/:id that gets the id via request.params(":id") and gives it to deleteUser to delete it in the database.
+        //Create a GET route called /user that calls selectUsers and returns the data as JSON.
         Spark.get(
                 "/user",
                 ((request, response) -> {
@@ -45,6 +38,7 @@ public class Main {
                 })
         );
 
+        //Create a POST route called /user that parses request.body() into a User object and calls insertUser to put it in the database.
         Spark.post(
                 "/user",
                 ((request, response) -> {
@@ -56,6 +50,7 @@ public class Main {
                 })
         );
 
+        //Create a DELETE route called /user/:id that gets the id via request.params(":id") and gives it to deleteUser to delete it in the database.
         Spark.post(
                 "/user/:id",
                 ((request, response) -> {
@@ -70,6 +65,7 @@ public class Main {
 
         );
 
+        //Create a PUT route called /user that parses request.body() into a User object and calls updateUser to update it in the database.
         Spark.put(
                 "/user",
                 ((request, response) -> {
@@ -80,8 +76,6 @@ public class Main {
                 return "";
                 })
         );
-
-
 
     }
 
